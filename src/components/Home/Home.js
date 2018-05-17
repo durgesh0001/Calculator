@@ -16,12 +16,29 @@ class Home extends Component {
         this.props.getInputButtonsArray();
     }
 
-    render() {
-        return (
-            <View style={styles.rootContainer}>
+    renderContainer(){
+        if(this.props.inputValue && this.props.inputValue.length>5 ){
+            return (
+                <View style={styles.displayContainer}>
+                    <Text style={{color:"#fff",fontSize:30,textAlign: 'right'}}>{this.props.inputValue}</Text>
+                </View>
+            );
+        }
+        else{
+            return (
                 <View style={styles.displayContainer}>
                     <Text style={{color:"#fff",fontSize:100,textAlign: 'right'}}>{this.props.inputValue}</Text>
                 </View>
+            );
+
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.rootContainer}>
+                {this.renderContainer()}
+
                 <View style={styles.inputContainer}>
                     {this._renderInputButtons()}
                 </View>
